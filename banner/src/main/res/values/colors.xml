@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="weird_green">#4dcd9c</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="navigationBarColor">#2e2e2e</color>
+    <color name="off_white">#f6f6f5</color>
+
+</resources>
