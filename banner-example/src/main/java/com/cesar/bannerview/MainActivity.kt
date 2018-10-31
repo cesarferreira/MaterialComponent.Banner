@@ -1,6 +1,7 @@
 package com.cesar.bannerview
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import cesarferreira.faker.Faker
@@ -15,8 +16,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setupRecyclerView()
-//        banner.
 
+        setupBanner()
+        fab.setOnClickListener {
+            banner.show()
+        }
+
+    }
+
+    private fun setupBanner() {
+        banner.setLeftButtonAction { banner.dismiss() }
+        banner.setRightButtonAction {
+            Toast.makeText(applicationContext, "Perform Action please", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setupRecyclerView() {

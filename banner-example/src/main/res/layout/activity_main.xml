@@ -2,13 +2,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <com.cesar.materialcomponents.Banner
             android:background="#ccc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentText="Yoooooooo"
+            app:contentText="A new parcel has arrived in your Glue Box, due for delivery on Friday, 18th October"
+            app:leftButtonText="dismiss"
+            app:rightButtonText="perform action"
             app:bannerBackgroundColor="@color/weird_green"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,4 +31,12 @@
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/banner"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton android:layout_width="wrap_content"
+                                                                           android:src="@drawable/ic_refresh"
+                                                                           android:layout_height="wrap_content"
+                                                                           app:layout_constraintEnd_toEndOf="parent"
+                                                                           android:layout_marginEnd="24dp"
+                                                                           android:layout_marginBottom="24dp"
+                                                                           app:layout_constraintBottom_toBottomOf="parent"
+                                                                           android:id="@+id/fab"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

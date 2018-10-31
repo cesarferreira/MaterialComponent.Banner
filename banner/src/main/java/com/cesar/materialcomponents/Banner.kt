@@ -1,32 +1,26 @@
 package com.cesar.materialcomponents
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.drawable.Drawable
-import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.Transformation
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.cesar.materialcomponents.R
+import kotlinx.android.synthetic.main.material_banner.view.*
 
 /**
  * TODO: document your custom view class.
  */
 class Banner : CoordinatorLayout {
 
-    private var _contentText: String? = null // TODO: use a default from R.string...
-    private var _leftButtonText: String? = null // TODO: use a default from R.string...
-    private var _rightButtonText: String? = null // TODO: use a default from R.string...
+    private var _contentText: String? = "Please fill me in" // TODO: use a default from R.string...
+    private var _leftButtonText: String? = "Dismiss" // TODO: use a default from R.string...
+    private var _rightButtonText: String? = "Right Button" // TODO: use a default from R.string...
 
 //    <attr name="contentText" format="string"/>
 //    <attr name="leftButtonText" format="string"/>
 //    <attr name="rightButtonText" format="string"/>
-
-    private var textPaint: TextPaint? = null
-    private var textWidth: Float = 0f
-    private var textHeight: Float = 0f
 
     /**
      * The text to draw
@@ -35,7 +29,21 @@ class Banner : CoordinatorLayout {
         get() = _contentText
         set(value) {
             _contentText = value
-            invalidateTextPaintAndMeasurements()
+            contentTextView.text = value
+        }
+
+    var leftButtonText: String?
+        get() = _leftButtonText
+        set(value) {
+            _leftButtonText = value
+            leftButton.text = value
+        }
+
+    var rightButtonText: String?
+        get() = _rightButtonText
+        set(value) {
+            _rightButtonText = value
+            rightButton.text = value
         }
 
 
@@ -55,59 +63,73 @@ class Banner : CoordinatorLayout {
         // Load attributes
         View.inflate(context, R.layout.material_banner, this)
 
-        val a = context.obtainStyledAttributes(
+        val typedArray = context.obtainStyledAttributes(
             attrs, R.styleable.Banner, defStyle, 0
         )
 
-        _contentText = a.getString(
+        contentText = typedArray.getString(
             R.styleable.Banner_contentText
         )
 
+        leftButtonText = typedArray.getString(
+            R.styleable.Banner_leftButtonText
+        )
 
-        a.recycle()
+        rightButtonText = typedArray.getString(
+            R.styleable.Banner_rightButtonText
+        )
 
-        // Set up a default TextPaint object
-        textPaint = TextPaint().apply {
-            flags = Paint.ANTI_ALIAS_FLAG
-            textAlign = Paint.Align.LEFT
-        }
-
-        // Update TextPaint and text measurements from attributes
-        invalidateTextPaintAndMeasurements()
-    }
-
-    private fun invalidateTextPaintAndMeasurements() {
-        textPaint?.let {
-//            it.textSize = exampleDimension
-//            it.color = exampleColor
-//            textWidth = it.measureText(exampleString)
-            textHeight = it.fontMetrics.bottom
-        }
-    }
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
-        // TODO: consider storing these as member variables to reduce
-        // allocations per draw cycle.
-        val paddingLeft = paddingLeft
-        val paddingTop = paddingTop
-        val paddingRight = paddingRight
-        val paddingBottom = paddingBottom
-
-        val contentWidth = width - paddingLeft - paddingRight
-        val contentHeight = height - paddingTop - paddingBottom
-
-        contentText?.let {
-            // Draw the text.
-            canvas.drawText(
-                it,
-                paddingLeft + (contentWidth - textWidth) / 2,
-                paddingTop + (contentHeight + textHeight) / 2,
-                textPaint
-            )
-        }
-
+        typedArray.recycle()
 
     }
+
+    fun dismiss() = this.collapse()
+    fun show() = this.expand()
+
+    fun setLeftButtonAction(action: () -> Unit) = leftButton.setOnClickListener { action() }
+    fun setRightButtonAction(action: () -> Unit) = rightButton.setOnClickListener { action() }
+
+
+    private fun View.expand() {
+        this@expand.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val targetHeight = this@expand.measuredHeight
+
+        this@expand.layoutParams.height = 0
+        this@expand.visibility = View.VISIBLE
+        val animation = object : Animation() {
+            override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
+                this@expand.layoutParams.height = if (interpolatedTime == 1f)
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                else
+                    (targetHeight * interpolatedTime).toInt()
+                this@expand.requestLayout()
+            }
+
+            override fun willChangeBounds(): Boolean = true
+        }
+
+        animation.duration = (targetHeight / this@expand.context.resources.displayMetrics.density).toInt().toLong()
+        this@expand.startAnimation(animation)
+    }
+
+    private fun View.collapse() {
+        val initialHeight = this.measuredHeight
+
+        val animation = object : Animation() {
+            override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
+                if (interpolatedTime == 1f) {
+                    this@collapse.visibility = View.GONE
+                } else {
+                    this@collapse.layoutParams.height = initialHeight - (initialHeight * interpolatedTime).toInt()
+                    this@collapse.requestLayout()
+                }
+            }
+
+            override fun willChangeBounds(): Boolean = true
+        }
+
+        animation.duration = (initialHeight / this.context.resources.displayMetrics.density).toInt().toLong()
+        this.startAnimation(animation)
+    }
+
 }

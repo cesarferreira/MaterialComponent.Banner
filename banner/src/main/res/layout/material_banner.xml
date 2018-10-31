@@ -7,9 +7,9 @@
         android:layout_height="wrap_content"
         android:background="@color/weird_green"
         android:orientation="vertical">
-    
+
     <TextView
-            android:id="@+id/textView"
+            android:id="@+id/contentTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -24,13 +24,13 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/positiveButton"
+            app:layout_constraintBottom_toTopOf="@+id/rightButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/negativeButton"
+            android:id="@+id/leftButton"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,13 +39,13 @@
             android:text="dismiss"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/positiveButton"
-            app:layout_constraintEnd_toStartOf="@+id/positiveButton"
-            app:layout_constraintTop_toTopOf="@+id/positiveButton"
+            app:layout_constraintBottom_toBottomOf="@+id/rightButton"
+            app:layout_constraintEnd_toStartOf="@+id/rightButton"
+            app:layout_constraintTop_toTopOf="@+id/rightButton"
             app:rippleColor="@color/white"/>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/positiveButton"
+            android:id="@+id/rightButton"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
