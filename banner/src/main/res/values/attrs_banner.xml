@@ -1,8 +1,11 @@
 <resources>
     <declare-styleable name="Banner">
-        <attr name="exampleString" format="string"/>
-        <attr name="exampleDimension" format="dimension"/>
-        <attr name="exampleColor" format="color"/>
-        <attr name="exampleDrawable" format="color|reference"/>
+        <attr name="contentText" format="string"/>
+        <attr name="leftButtonText" format="string"/>
+        <attr name="rightButtonText" format="string"/>
+
+        <attr name="contentTextColor" format="color"/>
+        <attr name="bannerBackgroundColor" format="color"/>
+
     </declare-styleable>
 </resources>

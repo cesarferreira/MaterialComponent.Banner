@@ -8,16 +8,21 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.cesar.materialcomponents.R
 
 /**
  * TODO: document your custom view class.
  */
-class Banner : View {
+class Banner : CoordinatorLayout {
 
-    private var _exampleString: String? = null // TODO: use a default from R.string...
-    private var _exampleColor: Int = Color.RED // TODO: use a default from R.color...
-    private var _exampleDimension: Float = 0f // TODO: use a default from R.dimen...
+    private var _contentText: String? = null // TODO: use a default from R.string...
+    private var _leftButtonText: String? = null // TODO: use a default from R.string...
+    private var _rightButtonText: String? = null // TODO: use a default from R.string...
+
+//    <attr name="contentText" format="string"/>
+//    <attr name="leftButtonText" format="string"/>
+//    <attr name="rightButtonText" format="string"/>
 
     private var textPaint: TextPaint? = null
     private var textWidth: Float = 0f
@@ -26,37 +31,13 @@ class Banner : View {
     /**
      * The text to draw
      */
-    var exampleString: String?
-        get() = _exampleString
+    var contentText: String?
+        get() = _contentText
         set(value) {
-            _exampleString = value
+            _contentText = value
             invalidateTextPaintAndMeasurements()
         }
 
-    /**
-     * The font color
-     */
-    var exampleColor: Int
-        get() = _exampleColor
-        set(value) {
-            _exampleColor = value
-            invalidateTextPaintAndMeasurements()
-        }
-
-    /**
-     * In the example view, this dimension is the font size.
-     */
-    var exampleDimension: Float
-        get() = _exampleDimension
-        set(value) {
-            _exampleDimension = value
-            invalidateTextPaintAndMeasurements()
-        }
-
-    /**
-     * In the example view, this drawable is drawn above the text.
-     */
-    var exampleDrawable: Drawable? = null
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -72,30 +53,16 @@ class Banner : View {
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
         // Load attributes
+        View.inflate(context, R.layout.material_banner, this)
+
         val a = context.obtainStyledAttributes(
             attrs, R.styleable.Banner, defStyle, 0
         )
 
-        _exampleString = a.getString(
-            R.styleable.Banner_exampleString
-        )
-        _exampleColor = a.getColor(
-            R.styleable.Banner_exampleColor,
-            exampleColor
-        )
-        // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
-        // values that should fall on pixel boundaries.
-        _exampleDimension = a.getDimension(
-            R.styleable.Banner_exampleDimension,
-            exampleDimension
+        _contentText = a.getString(
+            R.styleable.Banner_contentText
         )
 
-        if (a.hasValue(R.styleable.Banner_exampleDrawable)) {
-            exampleDrawable = a.getDrawable(
-                R.styleable.Banner_exampleDrawable
-            )
-            exampleDrawable?.callback = this
-        }
 
         a.recycle()
 
@@ -111,9 +78,9 @@ class Banner : View {
 
     private fun invalidateTextPaintAndMeasurements() {
         textPaint?.let {
-            it.textSize = exampleDimension
-            it.color = exampleColor
-            textWidth = it.measureText(exampleString)
+//            it.textSize = exampleDimension
+//            it.color = exampleColor
+//            textWidth = it.measureText(exampleString)
             textHeight = it.fontMetrics.bottom
         }
     }
@@ -131,7 +98,7 @@ class Banner : View {
         val contentWidth = width - paddingLeft - paddingRight
         val contentHeight = height - paddingTop - paddingBottom
 
-        exampleString?.let {
+        contentText?.let {
             // Draw the text.
             canvas.drawText(
                 it,
@@ -141,13 +108,6 @@ class Banner : View {
             )
         }
 
-        // Draw the example drawable on top of the text.
-        exampleDrawable?.let {
-            it.setBounds(
-                paddingLeft, paddingTop,
-                paddingLeft + contentWidth, paddingTop + contentHeight
-            )
-            it.draw(canvas)
-        }
+
     }
 }

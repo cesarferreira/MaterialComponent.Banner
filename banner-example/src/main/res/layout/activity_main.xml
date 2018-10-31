@@ -1,16 +1,31 @@
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
     <com.cesar.materialcomponents.Banner
             android:background="#ccc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:exampleDimension="24sp"
-            app:exampleColor="#33b5e5"
-            app:exampleString="Hello, Banner"
-            app:exampleDrawable="@android:drawable/ic_menu_add"/>
+            app:contentText="Yoooooooo"
+            app:bannerBackgroundColor="@color/weird_green"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/banner"/>
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_list_item"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/banner"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,9 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:statusBarColor">@color/off_white</item>
+        <item name="android:statusBarColor">@color/weird_green</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:navigationBarColor">@color/navigationBarColor</item>
     </style>
 
 </resources>
