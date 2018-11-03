@@ -1,1 +1,1 @@
-include ':banner-example', ':banner'
+include ':banner-example', ':banner', ':banner-example-remote'

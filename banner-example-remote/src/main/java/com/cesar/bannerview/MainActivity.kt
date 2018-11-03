@@ -18,7 +18,10 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
 
         setupBanner()
-        fab.setOnClickListener { banner.show() }
+        fab.setOnClickListener {
+            banner.show()
+        }
+
     }
 
     private fun setupBanner() {
