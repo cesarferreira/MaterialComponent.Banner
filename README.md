@@ -35,7 +35,7 @@ allprojects { repositories { maven { url 'https://jitpack.io' } }}
 
 ```groovy
 dependencies {
-    implementation 'com.github.cesarferreira:MaterialComponent.Banner:0.1.0'
+    implementation 'com.github.cesarferreira:MaterialComponent.Banner:0.10.0'
 }
 ```
 
