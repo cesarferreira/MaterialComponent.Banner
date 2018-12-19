@@ -6,7 +6,25 @@
   <img src="extras/animation.gif" width="80%" />
 </p>
 
+# Usage
+in your `layout.xml`
+```xml
+  <com.cesar.materialcomponents.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ccc"
+        app:bannerBackgroundColor="@color/weird_green"
+        app:contentText="Your password was updated on another device. Please sign in again"
+        app:leftButtonText="Continue as Guest"
+        app:rightButtonText="Sign in"/>
+```
 
+In your `activity.kt`
+```kotlin
+ banner.setLeftButtonAction { banner.dismiss() }
+ banner.setRightButtonAction { navigator.goToSignIn() }
+ ```
 
 # Install
 Just add the following dependency in your app's `build.gradle`
