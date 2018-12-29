@@ -1,4 +1,4 @@
-# Banners
+# Banners [![](https://jitpack.io/v/cesarferreira/MaterialComponent.Banner.svg)](https://jitpack.io/#cesarferreira/MaterialComponent.Banner)
 
 > A banner displays a prominent message and related optional actions.
 
