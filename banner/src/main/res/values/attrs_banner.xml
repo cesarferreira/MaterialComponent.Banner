@@ -3,6 +3,7 @@
         <attr name="contentText" format="string|reference"/>
         <attr name="leftButtonText" format="string|reference"/>
         <attr name="rightButtonText" format="string|reference"/>
+        <attr name="icon" format="reference"/>
 
         <attr name="contentTextColor" format="color"/>
         <attr name="bannerBackgroundColor" format="color"/>

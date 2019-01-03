@@ -8,6 +8,17 @@
         android:background="@color/weird_green"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/contentIconView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
+
     <TextView
             android:id="@+id/contentTextView"
             android:layout_width="0dp"
@@ -26,7 +37,7 @@
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/rightButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/contentIconView"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
