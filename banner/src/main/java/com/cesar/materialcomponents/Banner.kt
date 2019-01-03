@@ -1,12 +1,14 @@
 package com.cesar.materialcomponents
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.material_banner.view.*
 
 /**
@@ -17,6 +19,7 @@ class Banner : CoordinatorLayout {
     private var _contentText: String? = "Please fill me in" // TODO: use a default from R.string...
     private var _leftButtonText: String? = "Dismiss" // TODO: use a default from R.string...
     private var _rightButtonText: String? = "Right Button" // TODO: use a default from R.string...
+    private var _iconDrawableRes: Drawable? = null // invisible by default
 
 //    <attr name="contentText" format="string"/>
 //    <attr name="leftButtonText" format="string"/>
@@ -44,6 +47,14 @@ class Banner : CoordinatorLayout {
         set(value) {
             _rightButtonText = value
             rightButton.text = value
+        }
+
+    var iconDrawableRes: Drawable?
+        get() = _iconDrawableRes
+        set(value) {
+            _iconDrawableRes = value
+            contentIconView.setImageDrawable(value)
+            contentIconView.visibility = View.VISIBLE
         }
 
 
@@ -78,6 +89,14 @@ class Banner : CoordinatorLayout {
         rightButtonText = typedArray.getString(
             R.styleable.Banner_rightButtonText
         )
+
+        iconDrawableRes = typedArray.getDrawable(
+            R.styleable.Banner_icon
+        )
+
+        linearLayout3.setBackgroundColor(typedArray.getColor(R.styleable.Banner_bannerBackgroundColor, ContextCompat.getColor(context, R.color.weird_green)))
+
+        contentTextView.setTextColor(typedArray.getColor(R.styleable.Banner_contentTextColor, ContextCompat.getColor(context, R.color.white)))
 
         typedArray.recycle()
 
