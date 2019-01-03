@@ -98,6 +98,9 @@ class Banner : CoordinatorLayout {
 
         contentTextView.setTextColor(typedArray.getColor(R.styleable.Banner_contentTextColor, ContextCompat.getColor(context, R.color.white)))
 
+        leftButton.setTextColor(typedArray.getColor(R.styleable.Banner_buttonsTextColor, ContextCompat.getColor(context, R.color.white)))
+        rightButton.setTextColor(typedArray.getColor(R.styleable.Banner_buttonsTextColor, ContextCompat.getColor(context, R.color.white)))
+
         typedArray.recycle()
 
     }

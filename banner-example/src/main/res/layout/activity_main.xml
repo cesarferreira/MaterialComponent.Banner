@@ -12,6 +12,7 @@
         android:background="#ccc"
         android:visibility="gone"
         app:bannerBackgroundColor="@color/weird_green"
+        app:buttonsTextColor="@color/colorAccent"
         app:contentText="A new parcel has arrived in your Glue Box, due for delivery on Friday, 18th October"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
