@@ -6,6 +6,7 @@
         <attr name="icon" format="reference"/>
 
         <attr name="contentTextColor" format="color"/>
+        <attr name="buttonsTextColor" format="color"/>
         <attr name="bannerBackgroundColor" format="color"/>
 
     </declare-styleable>
