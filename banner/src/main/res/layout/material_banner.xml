@@ -16,7 +16,7 @@
             android:layout_marginLeft="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/contentTextView"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
     <TextView
             android:id="@+id/contentTextView"
